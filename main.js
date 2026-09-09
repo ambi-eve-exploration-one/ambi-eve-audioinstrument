@@ -1,11 +1,12 @@
-const content = document.querySelector(".content"),
-  Playimage = content.querySelector(".music-image img"),
-  musicName = content.querySelector(".music-title .name"),
-  musicArtist = content.querySelector(".music-title .artist");
-Audio = document.querySelector(".main-song");
-playBtn = content.querySelector(".play-pause");
-playBtnIcon = content.querySelector(".play-pause img");
-Shuffle = content.querySelector("#shuffle");
+const content = document.querySelector(".content");
+const Playimage = document.querySelector(".music-image img");
+const musicName = document.querySelector(".music-title .name");
+const musicArtist = document.querySelector(".music-title .artist");
+const Audio = document.querySelector(".main-song");
+const playBtn = document.querySelector(".play-pause");
+const playBtnIcon = document.querySelector(".play-pause img");
+const Shuffle = document.querySelector("#shuffle");
+const nextBtn = document.querySelector("#skip");
 
 let index = 1;
 
@@ -17,7 +18,7 @@ window.addEventListener("load", () => {
 function loadData(indexValue) {
   musicName.innerHTML = songs[indexValue - 1].name;
   musicArtist.innerHTML = songs[indexValue - 1].artist;
-  Audio.src = "Songs/" + songs[indexValue - 1].audio + ".mp3";
+  Audio.src = "songs/" + songs[indexValue - 1].audio + ".mp3";
 }
 
 playBtn.addEventListener("click", () => {
@@ -31,13 +32,13 @@ playBtn.addEventListener("click", () => {
 
 function playSong() {
   content.classList.add("paused");
-  playBtnIcon.src = "Icons/icons8-pause-30.png";
+  playBtnIcon.src = "icons/icons8-pause-30.png";
   Audio.play();
 }
 
 function pauseSong() {
   content.classList.remove("paused");
-  playBtnIcon.src = "Icons/icons8-play-30.png";
+  playBtnIcon.src = "icons/icons8-play-30.png";
   Audio.pause();
 }
 
