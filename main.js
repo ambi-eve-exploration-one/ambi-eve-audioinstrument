@@ -59,6 +59,12 @@ nextBtn.addEventListener("click", () => {
   nextSong();
 });
 
+Shuffle.addEventListener("click", () => {
+  shufflePlaylist();
+});
+
+// Added code so that when you click on the shuffle button it will randomise the playlist
+
 function nextSong() {
   index = (index + 1) % songOrder.length;
   loadData(index);
@@ -68,17 +74,24 @@ function nextSong() {
 // The previous code was used assuming that the index was still 1-based. This uses it using the new 0-base
 
 function shufflePlaylist() {
-  for (let i = songOrder.length - 1; i > 0; i--) {
+  const currentSong = songOrder[index];
+  const upcomingSongs = songOrder.filter((_, songIndex) => songIndex !== index);
+
+  for (let i = upcomingSongs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [songOrder[i], songOrder[j]] = [songOrder[j], songOrder[i]];
+    [upcomingSongs[i], upcomingSongs[j]] = [upcomingSongs[j], upcomingSongs[i]];
   }
 
-  index = 0;
-  loadData(index);
-  playSong();
+  songOrder = [...songOrder.slice(0, index), currentSong, ...upcomingSongs];
+
+  // The shuffle method was changed from using the index to pick random songs to using the Fisher-Yates shuffle. This way it will shuffle the entire order of the songs instead of picking out just one song. Additionally, the song currently playing will still continue to play, acting like a true shuffler instead of the index randomly picking out a song to play.
+
+  if (Audio.paused && content.classList.contains("paused")) {
+    playSong();
+  }
 }
 
-// The shuffle method was changed from using the index to pick random songs to using the Fisher-Yates shuffle. This way it will shuffle the entire order of the songs instead of picking out just one
+// The song would keep restarting every time the shuffle button was pressed, so I had the agent help me here to make sure the song kept playing even when you shuffle
 
 Audio.addEventListener("ended", () => {
   nextSong();
