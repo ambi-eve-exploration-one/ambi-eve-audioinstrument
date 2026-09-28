@@ -9,3 +9,38 @@
 .shuffle {
   cursor: pointer;
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding: 10px;
+  border: 1px solid #111111;
+}
+
+.play-pause {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.music-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.queue-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.current {
+  font-weight: bold;
+}

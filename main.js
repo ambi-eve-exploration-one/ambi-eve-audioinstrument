@@ -19,7 +19,7 @@ function renderQueue() {
 
   songOrder.slice(index).forEach((song, position) => {
     const queueItem = document.createElement("li");
-    queueItem.textContent = `${position === 0 ? "Now playing: " : ""}${song.name} — ${song.artist}`;
+    queueItem.textContent = `${song.name} — ${song.artist}`;
 
     if (position === 0) {
       queueItem.classList.add("current");
