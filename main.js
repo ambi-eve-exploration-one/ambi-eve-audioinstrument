@@ -15,11 +15,15 @@ window.addEventListener("load", () => {
   Audio.play();
 });
 
+// This line of code is used to play songs through the index value which I've assigned to each song in the playlist.js folder
+
 function loadData(indexValue) {
   musicName.innerHTML = songs[indexValue - 1].name;
   musicArtist.innerHTML = songs[indexValue - 1].artist;
   Audio.src = "songs/" + songs[indexValue - 1].audio + ".mp3";
 }
+
+// Each index corresponds to the name of the song and the artist
 
 playBtn.addEventListener("click", () => {
   const isMusicPaused = content.classList.contains("paused");
@@ -30,11 +34,15 @@ playBtn.addEventListener("click", () => {
   }
 });
 
+// The line of code used to play/pause the song whenever the play button is clicked by the user
+
 function playSong() {
   content.classList.add("paused");
   playBtnIcon.src = "icons/icons8-pause-30.png";
   Audio.play();
 }
+
+// To pause the song specifically
 
 function pauseSong() {
   content.classList.remove("paused");
@@ -61,6 +69,8 @@ Shuffle.addEventListener("click", () => {
   playSong();
 });
 
+// When shuffling the songs, the index code would pick a random index value. However this doesn't shuffle the entire order of the song
+
 Audio.addEventListener("ended", () => {
   index++;
   if (index > songs.length) {
@@ -69,3 +79,5 @@ Audio.addEventListener("ended", () => {
   loadData(index);
   playSong();
 });
+
+// When the song ends, this line of code will continue to play the next song
