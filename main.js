@@ -7,8 +7,12 @@ const playBtn = document.querySelector(".play-pause");
 const playBtnIcon = document.querySelector(".play-pause img");
 const Shuffle = document.querySelector("#shuffle");
 const nextBtn = document.querySelector("#skip");
+const playlistEl = document.querySelector(".playlist");
 
-let index = 1;
+let songOrder = [...songs];
+let index = 0;
+
+// With help from the AI agent in Visual Studio Code, I changed the original code to include 0 as an index instead of 1. This allows the playback order to come from the songOrder instead of the original array whilst keeping a copy of the playlist.
 
 window.addEventListener("load", () => {
   loadData(index);
@@ -18,12 +22,13 @@ window.addEventListener("load", () => {
 // This line of code is used to play songs through the index value which I've assigned to each song in the playlist.js folder
 
 function loadData(indexValue) {
-  musicName.innerHTML = songs[indexValue - 1].name;
-  musicArtist.innerHTML = songs[indexValue - 1].artist;
-  Audio.src = "songs/" + songs[indexValue - 1].audio + ".mp3";
+  const song = songOrder[indexValue];
+  musicName.innerHTML = song.name;
+  musicArtist.innerHTML = song.artist;
+  Audio.src = "songs/" + song.audio + ".mp3";
 }
 
-// Each index corresponds to the name of the song and the artist
+// With the playlist in songOrder instead of the songs folder, the agent changed the code so that it avoid me having to write repeated indexing over and over again
 
 playBtn.addEventListener("click", () => {
   const isMusicPaused = content.classList.contains("paused");
@@ -55,29 +60,28 @@ nextBtn.addEventListener("click", () => {
 });
 
 function nextSong() {
-  index++;
-  if (index > songs.length) {
-    index = 1;
-  }
+  index = (index + 1) % songOrder.length;
   loadData(index);
   playSong();
 }
 
-Shuffle.addEventListener("click", () => {
-  var randIdex = Math.floor(Math.random() * songs.length + 1);
-  loadData(randIdex);
-  playSong();
-});
+// The previous code was used assuming that the index was still 1-based. This uses it using the new 0-base
 
-// When shuffling the songs, the index code would pick a random index value. However this doesn't shuffle the entire order of the song
-
-Audio.addEventListener("ended", () => {
-  index++;
-  if (index > songs.length) {
-    index = 1;
+function shufflePlaylist() {
+  for (let i = songOrder.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [songOrder[i], songOrder[j]] = [songOrder[j], songOrder[i]];
   }
+
+  index = 0;
   loadData(index);
   playSong();
+}
+
+// The shuffle method was changed from using the index to pick random songs to using the Fisher-Yates shuffle. This way it will shuffle the entire order of the songs instead of picking out just one
+
+Audio.addEventListener("ended", () => {
+  nextSong();
 });
 
-// When the song ends, this line of code will continue to play the next song
+// Simplified the ending code
