@@ -12,7 +12,24 @@ const playlistEl = document.querySelector(".playlist");
 let songOrder = [...songs];
 let index = 0;
 
-// With help from the AI agent in Visual Studio Code, I changed the original code to include 0 as an index instead of 1. This allows the playback order to come from the songOrder instead of the original array whilst keeping a copy of the playlist.
+function renderQueue() {
+  if (!playlistEl) return;
+
+  playlistEl.innerHTML = "";
+
+  songOrder.slice(index).forEach((song, position) => {
+    const queueItem = document.createElement("li");
+    queueItem.textContent = `${position === 0 ? "Now playing: " : ""}${song.name} — ${song.artist}`;
+
+    if (position === 0) {
+      queueItem.classList.add("current");
+    }
+
+    playlistEl.appendChild(queueItem);
+  });
+}
+
+// With help from the AI agent in Visual Studio Code, I changed the original code to include 0 as an index instead of 1. This allows the playback order to come from the songOrder instead of the original array whilst keeping a copy of the playlist. I've also had help in making sure that the queue would show within the website through renderQueue, that way users can actively see the order of songs with what'll play next
 
 window.addEventListener("load", () => {
   loadData(index);
@@ -26,6 +43,7 @@ function loadData(indexValue) {
   musicName.innerHTML = song.name;
   musicArtist.innerHTML = song.artist;
   Audio.src = "songs/" + song.audio + ".mp3";
+  renderQueue();
 }
 
 // With the playlist in songOrder instead of the songs folder, the agent changed the code so that it avoid me having to write repeated indexing over and over again
@@ -83,8 +101,7 @@ function shufflePlaylist() {
   }
 
   songOrder = [...songOrder.slice(0, index), currentSong, ...upcomingSongs];
-
-  // The shuffle method was changed from using the index to pick random songs to using the Fisher-Yates shuffle. This way it will shuffle the entire order of the songs instead of picking out just one song. Additionally, the song currently playing will still continue to play, acting like a true shuffler instead of the index randomly picking out a song to play.
+  renderQueue();
 
   if (Audio.paused && content.classList.contains("paused")) {
     playSong();
