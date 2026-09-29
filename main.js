@@ -48,12 +48,14 @@ function loadData(indexValue) {
 
 // With the playlist in songOrder instead of the songs folder, the agent changed the code so that it avoid me having to write repeated indexing over and over again
 
-playBtn.addEventListener("click", () => {
-  const isMusicPaused = content.classList.contains("paused");
-  if (isMusicPaused) {
-    pauseSong();
-  } else {
-    playSong();
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    const isMusicPaused = content.classList.contains("paused");
+    if (isMusicPaused) {
+      pauseSong();
+    } else {
+      playSong();
+    }
   }
 });
 
@@ -73,12 +75,16 @@ function pauseSong() {
   Audio.pause();
 }
 
-nextBtn.addEventListener("click", () => {
-  nextSong();
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Enter") {
+    nextSong();
+  }
 });
 
-Shuffle.addEventListener("click", () => {
-  shufflePlaylist();
+document.addEventListener("keydown", (e) => {
+  if (e.code === "KeyR") {
+    shufflePlaylist();
+  }
 });
 
 // Added code so that when you click on the shuffle button it will randomise the playlist
@@ -121,9 +127,3 @@ var button = document.getElementById("my-button");
 // Source - https://stackoverflow.com/a/65132160
 // Posted by neiya, modified by community. See post 'Timeline' for change history
 // Retrieved 2026-09-29, License - CC BY-SA 4.0
-
-document.addEventListener("keydown", (e) => {
-  if (e.code === "Space") {
-    shufflePlaylist();
-  }
-});

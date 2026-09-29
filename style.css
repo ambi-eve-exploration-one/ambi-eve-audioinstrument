@@ -43,3 +43,12 @@
 .current {
   font-weight: bold;
 }
+
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
