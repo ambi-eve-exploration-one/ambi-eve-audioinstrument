@@ -118,18 +118,14 @@ Audio.addEventListener("ended", () => {
 
 var button = document.getElementById("my-button");
 
-button.addEventListener("click", function () {
-  if (button.classList.contains("red")) {
-    button.classList.remove("red");
-    button.classList.add("green");
-    button.innerHTML = "Added";
-  } else {
-    button.classList.remove("green");
-    button.classList.add("red");
-    button.innerHTML = "Not Added";
+// Source - https://stackoverflow.com/a/65132160
+// Posted by neiya, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-09-29, License - CC BY-SA 4.0
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    Shuffle.addEventListener("click", () => {
+      shufflePlaylist();
+    });
   }
 });
-
-// Source - https://stackoverflow.com/a/35165879
-// Posted by Richard Hamilton, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-09-29, License - CC BY-SA 3.0
