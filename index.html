@@ -9,35 +9,16 @@
     <script src="main.js" defer=""></script>
   </head>
   <body>
-    <div class="content">
-      <div class="music-title">
-        <p class="name">Song Name</p>
-        <p class="artist">Artist Name</p>
-      </div>
-      <div class="play-pause">
-        <img class="play" src="icons/icons8-play-30.png" />
-        <img class="skip" src="icons/icons8-end-30.png" id="skip" />
-        <img class="shuffle" src="icons/icons8-shuffle-30.png" id="shuffle" />
-      </div>
-      <div class="progress-details">
-        <div class="progress-bar">
-          <!--The bar that shows how far you've progressed in the song.-->
-          <span></span>
-        </div>
-        <div class="time">
-          <span class="current">0:00</span>
-          <span class="final">1:44</span>
-          <!--The timer of the song. How far you're in, how long it is, etc.-->
-        </div>
-      </div>
-      <audio src="songs/Adrenaline.mp3" class="main-song"></audio>
-      <audio src="songs/rain.mp3" class="rain-song" loop></audio>
-      <div class="queue-panel">
-        <h3>Queue:</h3>
-        <ul class="playlist"></ul>
+    <div class="container">
+      <div class="center">
+        <button id="explosion" onclick="play_sound1('explosion')">
+          Explosion
+        </button>
+        <button id="scream" onclick="play_sound2('scream')">Scream</button>
+        <button id="magic" onclick="play_sound3('magic')">Magic</button>
+        <button id="sword" onclick="play_sound4('sword')">Sword</button>
+        <button id="meow" onclick="play_sound5('meow')">Meow</button>
       </div>
     </div>
-    <button class="rain-button" type="button">Play rain</button>
-    <button class="slow-button" type="button">Slow song</button>
   </body>
 </html>
