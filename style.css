@@ -43,3 +43,10 @@
 .current {
   font-weight: bold;
 }
+
+.green {
+  background: green;
+}
+.red {
+  background: red;
+}
