@@ -43,3 +43,46 @@
 .current {
   font-weight: bold;
 }
+
+.progress-details {
+  grid-column: 1/-1; /*This way the progress bar and the icons span the full width of the box*/
+  width: 100%;
+  height: 6px;
+  background-color: lightgrey;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  cursor: pointer;
+}
+
+.progress-bar {
+  width: 50%;
+  height: inherit; /*What makes the trail blue to signify progress. Initially I wanted the colours of the site to change depending on the songs, but I decided to stick with the blue instead as I felt it fit the vibe of the background.*/
+  border-radius: inherit; /*Makes the progress circular*/
+  background-color: #111111;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #111111;
+  border-radius: inherit;
+  transform: translateY(-25%);
+  right: -5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.progress-details .progress-bar span {
+  opacity: 1;
+}
+
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /*So that the timestamps are laid out on each side of the progress bar*/
+  margin-top: 2px;
+  color: grey;
+}

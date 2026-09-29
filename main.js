@@ -8,6 +8,8 @@ const playBtnIcon = document.querySelector(".play-pause img");
 const Shuffle = document.querySelector("#shuffle");
 const nextBtn = document.querySelector("#skip");
 const playlistEl = document.querySelector(".playlist");
+const progressBar = document.querySelector(".progress-bar");
+const progressDetails = document.querySelector(".progress-details");
 
 let songOrder = [...songs];
 let index = 0;
@@ -115,3 +117,46 @@ Audio.addEventListener("ended", () => {
 });
 
 // Simplified the ending code
+
+Audio.addEventListener("timeupdate", (e) => {
+  const initialTime = e.target.currentTime;
+  const finalTime = e.target.duration;
+  let BarWidth = (initialTime / finalTime) * 100;
+  progressBar.style.width =
+    BarWidth + "%"; /**The code for the progress bar moving*/
+});
+
+progressDetails.addEventListener("click", (e) => {
+  let progressValue = progressDetails.clientWidth;
+  let clickedOffsetX = e.offsetX;
+  let MusicDuration =
+    Audio.duration; /**The code to change the position of the progress bar by clicking on the bar itself */
+
+  Audio.currentTime = (clickedOffsetX / progressValue) * MusicDuration;
+});
+
+Audio.addEventListener("loadeddata", () => {
+  let finalTimeData = content.querySelector(".final");
+  let AudioDuration = Audio.duration;
+  let finalMinutes = Math.floor(AudioDuration / 60);
+  let finalSeconds = Math.floor(AudioDuration % 60);
+  if (finalSeconds < 10) {
+    finalSeconds = "0" + finalSeconds;
+  }
+  finalTimeData.innerText = finalMinutes + ":" + finalSeconds;
+});
+let currentTimeData = content.querySelector(".current");
+let currentTime = Audio.currentTime;
+let currentMinutes = Math.floor(
+  currentTime / 60,
+); /**Rounds the minutes and seconds so that they don't show with exact decimals to give a cleaner look*/
+let currentSeconds = Math.floor(currentTime % 60);
+if (currentSeconds < 10) {
+  currentSeconds = "0" + currentSeconds;
+}
+currentTimeData.innerText =
+  currentMinutes +
+  ":" +
+  currentSeconds; /**Code to have the timestamps of the song match (more accurate time-stamps)*/
+
+//The progress bar, progress details and time update is a modified version of https://www.youtube.com/watch?v=3jFsdp9qkjs&t=1204s
