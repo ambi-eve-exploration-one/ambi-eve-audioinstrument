@@ -10,6 +10,9 @@ const nextBtn = document.querySelector("#skip");
 const playlistEl = document.querySelector(".playlist");
 const progressBar = document.querySelector(".progress-bar");
 const progressDetails = document.querySelector(".progress-details");
+const rainButton = document.querySelector(".rain-button");
+const rainAudio = document.querySelector(".rain-song");
+const slowButton = document.querySelector(".slow-button");
 
 let songOrder = [...songs];
 let index = 0;
@@ -161,3 +164,26 @@ Audio.addEventListener("timeupdate", (e) => {
 });
 
 //The progress bar, progress details and time update is a modified version of https://www.youtube.com/watch?v=3jFsdp9qkjs&t=1204s
+
+rainButton.addEventListener("click", () => {
+  if (rainAudio.paused) {
+    rainAudio.play();
+    rainButton.classList.add("active");
+  } else {
+    rainAudio.pause();
+    rainButton.classList.remove("active");
+  }
+});
+
+slowButton.addEventListener("click", () => {
+  if (Audio.playbackRate === 1) {
+    Audio.preservesPitch = false;
+    Audio.playbackRate = 0.5;
+    slowButton.classList.add("active");
+  } else {
+    Audio.playbackRate = 1;
+    slowButton.classList.remove("active");
+  }
+});
+
+// Audio sourced from Sound Effect by <a href="https://pixabay.com/users/boons_freak-39857343/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=188158">Pig Bank - Mood</a> from <a href="https://pixabay.com/sound-effects//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=188158">Pixabay</a>

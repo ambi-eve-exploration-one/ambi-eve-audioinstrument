@@ -86,3 +86,9 @@
   margin-top: 2px;
   color: grey;
 }
+
+.rain-button.active,
+.slow-button.active {
+  background-color: green;
+  color: white;
+}
