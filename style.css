@@ -56,8 +56,8 @@
 
 .progress-bar {
   width: 50%;
-  height: inherit; /*What makes the trail blue to signify progress. Initially I wanted the colours of the site to change depending on the songs, but I decided to stick with the blue instead as I felt it fit the vibe of the background.*/
-  border-radius: inherit; /*Makes the progress circular*/
+  height: inherit;
+  border-radius: inherit;
   background-color: #111111;
   cursor: pointer;
   position: relative;
