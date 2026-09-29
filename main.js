@@ -124,8 +124,6 @@ var button = document.getElementById("my-button");
 
 document.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-    Shuffle.addEventListener("click", () => {
-      shufflePlaylist();
-    });
+    shufflePlaylist();
   }
 });
