@@ -87,7 +87,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// Added code so that when you click on the shuffle button it will randomise the playlist
+// Changed the code so that instead of on click, it would respond to specific keys on the keyboard
 
 function nextSong() {
   index = (index + 1) % songOrder.length;
