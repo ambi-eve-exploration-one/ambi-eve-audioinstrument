@@ -5,6 +5,7 @@ const musicArtist = document.querySelector(".music-title .artist");
 const Audio = document.querySelector(".main-song");
 const playBtn = document.querySelector(".play-pause");
 const playBtnIcon = document.querySelector(".play-pause img");
+const nextBtn = document.querySelector(".next");
 const volumeSlider = document.querySelector(".volumeSlider");
 
 let index = 1;
@@ -40,10 +41,6 @@ function pauseSong() {
   playBtnIcon.src = "icons/icons8-play-30.png";
   Audio.pause();
 }
-
-nextBtn.addEventListener("click", () => {
-  nextSong();
-});
 
 function nextSong() {
   index++;
