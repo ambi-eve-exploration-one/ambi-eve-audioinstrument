@@ -69,7 +69,11 @@ volumeSlider.addEventListener("input", () => {
   Audio.volume = Number(volumeSlider.value);
 });
 
+// The volume slider will change from the position of the slider according to its value
+
 pitchSlider.addEventListener("input", (event) => {
   Audio.preservesPitch = false;
   Audio.playbackRate = Number(event.currentTarget.value);
 });
+
+// Similarly the pitch slider will change according to its value as well. The preservesPitch false code is so that the browser doesn't intefere with the pitch
