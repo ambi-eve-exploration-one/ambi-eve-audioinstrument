@@ -5,8 +5,9 @@ const musicArtist = document.querySelector(".music-title .artist");
 const Audio = document.querySelector(".main-song");
 const playBtn = document.querySelector(".play-pause");
 const playBtnIcon = document.querySelector(".play-pause img");
-const nextBtn = document.querySelector(".next");
 const volumeSlider = document.querySelector(".volumeSlider");
+const pitchSlider = document.querySelector(".pitchSlider");
+const nextBtn = document.querySelector("#skip");
 
 let index = 1;
 
@@ -42,6 +43,10 @@ function pauseSong() {
   Audio.pause();
 }
 
+nextBtn.addEventListener("click", () => {
+  nextSong();
+});
+
 function nextSong() {
   index++;
   if (index > songs.length) {
@@ -62,4 +67,9 @@ Audio.addEventListener("ended", () => {
 
 volumeSlider.addEventListener("input", () => {
   Audio.volume = Number(volumeSlider.value);
+});
+
+pitchSlider.addEventListener("input", (event) => {
+  Audio.preservesPitch = false;
+  Audio.playbackRate = Number(event.currentTarget.value);
 });
