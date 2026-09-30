@@ -9,3 +9,14 @@
 .shuffle {
   cursor: pointer;
 }
+
+.content {
+  justify-content: center;
+  display: flex;
+  width: fit-content;
+  flex-direction: column;
+  align-items: center;
+  border-width: 2px;
+  border-style: solid;
+  padding: 1.25ch;
+}

@@ -9,28 +9,23 @@
     <script src="main.js" defer=""></script>
   </head>
   <body>
-
     <div class="content">
-          </div>
-        </div>
-        <div class="music-title">
-          <p class="name">Song Name</p>
-          <p class="artist">Artist Name</p>
-        </div>
-              <div class="play-pause">
-                <img class="play" src="icons/icons8-play-30.png" />
-              </div>
-              <img class="skip" src="icons/icons8-end-30.png" id="skip" />
-              <img
-                class="shuffle"
-                src="icons/icons8-shuffle-30.png"
-                id="shuffle"
-              /> 
-            </div>
-          </div>
-           <audio
-            src="songs/Adrenaline.mp3"
-            class="main-song"
-          ></audio>
-        </div>
-            
+      <div class="music-title">
+        <p class="name">Song Name</p>
+        <p class="artist">Artist Name</p>
+      </div>
+      <div class="play-pause">
+        <img class="play" src="icons/icons8-play-30.png" />
+      </div>
+      <audio src="songs/Adrenaline.mp3" class="main-song"></audio>
+    </div>
+    <input
+      type="range"
+      class="volumeSlider"
+      min="0"
+      max="1"
+      step="0.01"
+      value="0.5"
+    />
+  </body>
+</html>

@@ -5,8 +5,7 @@ const musicArtist = document.querySelector(".music-title .artist");
 const Audio = document.querySelector(".main-song");
 const playBtn = document.querySelector(".play-pause");
 const playBtnIcon = document.querySelector(".play-pause img");
-const Shuffle = document.querySelector("#shuffle");
-const nextBtn = document.querySelector("#skip");
+const volumeSlider = document.querySelector(".volumeSlider");
 
 let index = 1;
 
@@ -55,12 +54,6 @@ function nextSong() {
   playSong();
 }
 
-Shuffle.addEventListener("click", () => {
-  var randIdex = Math.floor(Math.random() * songs.length + 1);
-  loadData(randIdex);
-  playSong();
-});
-
 Audio.addEventListener("ended", () => {
   index++;
   if (index > songs.length) {
@@ -68,4 +61,8 @@ Audio.addEventListener("ended", () => {
   }
   loadData(index);
   playSong();
+});
+
+volumeSlider.addEventListener("input", () => {
+  Audio.volume = Number(volumeSlider.value);
 });
