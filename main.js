@@ -33,4 +33,4 @@ function play_sound5() {
 
 // My cat
 
-// code inspiration from https://dev.to/aneeqakhan/create-a-sound-board-in-3-lines-of-code-3ho8. I used AI to guide me towards how I could modify the code
+// code inspiration from https://dev.to/aneeqakhan/create-a-sound-board-in-3-lines-of-code-3ho8. I used AI to guide me towards how I could modify the code as it wasn't working here.
